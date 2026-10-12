@@ -1,129 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#05070B">
-  <meta name="description" content="About Vespera — The philosophy and cryptographic foundation of zero-identifier communication.">
-  <title>About — Vespera Architecture &amp; Vision</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Vespera</title>
+  <meta name="description" content="Why we built Vespera: sovereign private conversation with Apple-grade simplicity and zero surveillance.">
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
 </head>
-<body>
-  <div class="page-ambient" aria-hidden="true"></div>
-
-  <header class="site-header">
-    <div class="pill-navbar">
-      <a class="brand" href="index.html" aria-label="Vespera Home">
-        <span class="brand-symbol">V</span>
-        <span>VESPERA</span>
-        <span class="nav-status" title="Network Operational"></span>
+<body class="theme-dark">
+  <!-- Floating Frosted Glass Pill Navbar -->
+  <header class="navbar-wrapper">
+    <nav class="nav-pill" aria-label="Main Navigation">
+      <a href="index.html" class="nav-brand">
+        <svg class="brand-glyph" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2L3 7V12C3 17.52 6.84 22.74 12 24C17.16 22.74 21 17.52 21 12V7L12 2Z" stroke="#F5F5F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 12L11 14L15 10" stroke="#F5F5F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-text">Vespera</span>
       </a>
-      <nav class="nav-links" aria-label="Main Navigation">
-        <a href="index.html#features">Features</a>
-        <a href="index.html#protocol">Protocol</a>
-        <a href="about.html" class="active">About</a>
-        <a href="download.html">Download</a>
-      </nav>
-      <div class="header-actions">
-        <a href="download.html" class="pill-btn pill-btn-primary">Get App</a>
+      
+      <div class="nav-links">
+        <a href="index.html#features" class="nav-link">Features</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="download.html" class="nav-link">Download</a>
       </div>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-    </div>
+
+      <div class="nav-actions">
+        <a href="download.html" class="btn-pill-primary">Get Vespera</a>
+        <button id="menu-toggle" class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </nav>
   </header>
 
-  <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
-    <a href="index.html#features">Features</a>
-    <a href="index.html#protocol">Protocol</a>
-    <a href="about.html">About</a>
-    <a href="download.html">Download</a>
-    <a href="download.html" class="pill-btn pill-btn-primary" style="text-align: center;">Get App</a>
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="mobile-drawer-inner">
+      <a href="index.html#features" class="mobile-nav-link">Features</a>
+      <a href="about.html" class="mobile-nav-link active">About</a>
+      <a href="download.html" class="mobile-nav-link">Download</a>
+      <a href="download.html" class="btn-pill-primary mobile-btn">Get Vespera</a>
+    </div>
   </div>
 
-  <main>
-    <div class="container">
-      <div class="about-hero">
-        <span class="section-label">Vision &amp; Philosophy</span>
-        <h1 class="hero-title" style="text-align: left; margin: 16px 0 24px;">The architecture of sovereign conversation.</h1>
-        <p class="hero-desc" style="text-align: left; margin: 0;">Communication does not require identification. For decades, consumer software has conflated connecting people with collecting their phone numbers and contact graphs.</p>
+  <main class="page-content">
+    <section class="editorial-hero">
+      <div class="container editorial-container">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span class="badge-text">Vision & Philosophy</span>
+        </div>
+        <h1 class="editorial-title">
+          The standard for sovereign conversation.
+        </h1>
+        <p class="editorial-lead">
+          Communication does not require surveillance. For two decades, consumer messaging software has conflated connecting people with harvesting phone numbers and contact graphs. We built Vespera to restore privacy as an everyday default.
+        </p>
       </div>
+    </section>
 
-      <article class="about-prose">
-        <section id="philosophy">
-          <h2>Zero-Identifier Philosophy</h2>
-          <p>Every mainstream communication tool begins with a compromise: submit a SIM card, associate a telephone number, and upload an address book. This architecture ties cryptographic identity to state-issued telecommunications credentials.</p>
-          <p>Vespera inverts this assumption. Conversations are ephemeral agreements between two independent devices. Your device creates private keys locally. No telephone numbers exist in the system, eliminating SIM-swap vulnerabilities and global directory indexing entirely.</p>
-        </section>
+    <section class="editorial-section">
+      <div class="container editorial-container">
+        <div class="article-block">
+          <h2 class="article-heading">Why Phone Numbers Were a Mistake</h2>
+          <p class="article-paragraph">
+            Every mainstream messenger begins with an unacceptable trade-off: give up your SIM card, bind your real-world identity to a phone number, and hand over your private address book. This exposes users to SIM swapping, unwanted spam, and government identity indexing.
+          </p>
+          <p class="article-paragraph">
+            Vespera inverts this model completely. A conversation is an agreement between two sovereign devices. No phone numbers exist anywhere in our systems. Your identity is a cryptographic handle that lives solely on your device.
+          </p>
+        </div>
 
-        <section id="cryptography">
-          <h2>Cryptographic Principles</h2>
-          <p>The system is built upon four foundational security requirements designed from first principles:</p>
-          
-          <div class="principles-list">
-            <div class="principle-item">
-              <h4>1. Blind Relay Transmission</h4>
-              <p>Relay nodes pass encrypted envelopes through transient queues without learning sender IP, recipient IP, or communication patterns.</p>
-            </div>
+        <div class="article-block">
+          <h2 class="article-heading">Complete Control Over Your Words</h2>
+          <p class="article-paragraph">
+            Mistakes happen in human conversation. If you send sensitive information or a message to the wrong recipient, you shouldn't have to worry about where it ends up. Vespera gives you instant Delete for Everyone, quietly wiping the message from all recipient devices.
+          </p>
+          <p class="article-paragraph">
+            For conversations that should not linger, Silent Lifespan runs quietly in the background. Choose 1 hour, 24 hours, or 7 days, and messages naturally clear without frantic countdown timers, ticking anxiety, or visual noise.
+          </p>
+        </div>
 
-            <div class="principle-item">
-              <h4>2. Asynchronous Double Ratchet</h4>
-              <p>Every message advances an ephemeral key ratchet. Compromising a current session key yields zero access to historical or future conversation transcripts.</p>
-            </div>
+        <div class="article-block">
+          <h2 class="article-heading">Hardware Enclave Isolation</h2>
+          <p class="article-paragraph">
+            Security tools often ask users to trust promises. Vespera relies on hardware isolation. Your cryptographic keys never leave Apple Secure Enclave or Android StrongBox hardware modules. If a server is compromised, no readable data exists because servers never hold keys or conversation logs.
+          </p>
+        </div>
 
-            <div class="principle-item">
-              <h4>3. Ephemeral Local Shredding</h4>
-              <p>Message decay is local and definitive. Once the burn timer elapses, cryptographic keys in volatile memory are overwritten with random noise.</p>
-            </div>
+        <div class="article-block">
+          <h2 class="article-heading">Elegance as a Core Security Feature</h2>
+          <p class="article-paragraph">
+            High-security tools historically looked like cluttered developer terminals that alienated non-technical people. We believe software people trust must feel calm, refined, and effortless. Vespera is crafted with the same restraint, precision, and beauty you expect from Apple hardware.
+          </p>
+        </div>
 
-            <div class="principle-item">
-              <h4>4. Hardware Enclave Storage</h4>
-              <p>Identity keys never leave the device's hardware security module (Secure Enclave on iOS/macOS, StrongBox Keymaster on Android).</p>
-            </div>
-          </div>
-        </section>
-
-        <section id="team">
-          <h2>Team Vision</h2>
-          <p>Vespera is engineered by an independent security and cryptography collective dedicated to sovereign tools. We believe human autonomy relies on unmonitored speech, verifiable mathematics, and open standards.</p>
-        </section>
-      </article>
-    </div>
+        <div class="editorial-cta">
+          <h3 class="cta-heading">Ready for private communication?</h3>
+          <p class="cta-sub">Available across iPhone, iPad, and Mac.</p>
+          <a href="download.html" class="btn-pill-primary">Download Vespera</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
+  <!-- Minimal Apple-Grade Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
       <div class="footer-top">
-        <div>
-          <a class="brand" href="index.html">
-            <span class="brand-symbol">V</span>
-            <span>VESPERA</span>
-          </a>
-          <p style="color: var(--text-secondary); font-size: 13px; margin-top: 12px; max-width: 280px;">Sovereign, zero-identifier private communication platform.</p>
+        <div class="footer-brand">
+          <span class="brand-text">Vespera</span>
+          <p class="footer-tagline">Sovereign private messaging with Apple-grade clarity.</p>
         </div>
-        <div class="footer-nav">
-          <div class="footer-col">
-            <h5>Navigation</h5>
-            <ul>
-              <li><a href="index.html">Platform</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="download.html">Download</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h5>Protocol</h5>
-            <ul>
-              <li><a href="#cryptography">Cryptography</a></li>
-              <li><a href="#philosophy">Philosophy</a></li>
-              <li><a href="download.html#specs">System Specs</a></li>
-            </ul>
-          </div>
+        <div class="footer-links">
+          <a href="index.html#features" class="footer-link">Features</a>
+          <a href="about.html" class="footer-link">About</a>
+          <a href="download.html" class="footer-link">Download</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>VESPERA ARCHITECTURE · SOVEREIGN PROTOCOL</span>
-        <span>ZERO METADATA · ZERO SIM</span>
+        <p class="copyright">2026 Vespera. All rights reserved.</p>
       </div>
     </div>
   </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>

@@ -1,381 +1,386 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#05070B">
-  <meta name="description" content="Vespera — Sovereign cryptographic messaging. Zero telephone numbers, zero metadata, hardware enclave security.">
-  <title>Vespera — Private Sovereign Communication</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vespera — Private Messaging</title>
+  <meta name="description" content="End-to-end encrypted messaging with zero phone numbers, remote message shredding, and hardware enclave security.">
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
 </head>
-<body>
-  <div class="page-ambient" aria-hidden="true"></div>
-
-  <header class="site-header">
-    <div class="pill-navbar">
-      <a class="brand" href="index.html" aria-label="Vespera Home">
-        <span class="brand-symbol">V</span>
-        <span>VESPERA</span>
-        <span class="nav-status" title="Network Operational"></span>
+<body class="theme-dark">
+  <!-- Floating Frosted Glass Pill Navbar -->
+  <header class="navbar-wrapper">
+    <nav class="nav-pill" aria-label="Main Navigation">
+      <a href="index.html" class="nav-brand">
+        <svg class="brand-glyph" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2L3 7V12C3 17.52 6.84 22.74 12 24C17.16 22.74 21 17.52 21 12V7L12 2Z" stroke="#F5F5F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 12L11 14L15 10" stroke="#F5F5F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-text">Vespera</span>
       </a>
-      <nav class="nav-links" aria-label="Main Navigation">
-        <a href="#features" class="active">Features</a>
-        <a href="#protocol">Protocol</a>
-        <a href="about.html">About</a>
-        <a href="download.html">Download</a>
-      </nav>
-      <div class="header-actions">
-        <a href="#claim" class="pill-btn pill-btn-primary">Reserve Handle</a>
+      
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="download.html" class="nav-link">Download</a>
       </div>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-    </div>
+
+      <div class="nav-actions">
+        <a href="download.html" class="btn-pill-primary">Get Vespera</a>
+        <button id="menu-toggle" class="nav-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </nav>
   </header>
 
-  <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
-    <a href="#features">Features</a>
-    <a href="#protocol">Protocol</a>
-    <a href="about.html">About</a>
-    <a href="download.html">Download</a>
-    <a href="#claim" class="pill-btn pill-btn-primary" style="text-align: center;">Reserve Handle</a>
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+    <div class="mobile-drawer-inner">
+      <a href="#features" class="mobile-nav-link">Features</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="download.html" class="mobile-nav-link">Download</a>
+      <a href="download.html" class="btn-pill-primary mobile-btn">Get Vespera</a>
+    </div>
   </div>
 
   <main>
+    <!-- Hero Section -->
     <section class="hero-section">
-      <div class="container">
-        <div class="eyebrow">
-          <span class="status-indicator"></span>
-          <span>Zero-Identifier Protocol</span>
+      <div class="container hero-container">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span class="badge-text">Private Messaging</span>
         </div>
-        <h1 class="hero-title">Private messaging without a phone number.</h1>
-        <p class="hero-desc">End-to-end encrypted chats, zero-knowledge keys, and zero metadata. Sovereign communication designed for absolute confidentiality.</p>
-        <div class="hero-cta">
-          <a href="download.html" class="pill-btn pill-btn-primary">Get Vespera</a>
-          <a href="about.html" class="pill-btn pill-btn-secondary">Read Architecture</a>
+        
+        <h1 class="hero-title">
+          Private conversation.<br>Zero compromise.
+        </h1>
+        
+        <p class="hero-subtitle">
+          End-to-end encrypted messaging designed with the clarity of iMessage and zero reliance on phone numbers. No SIM cards, no cloud logs, and complete control over your words.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="download.html" class="btn-pill-primary">Download for iOS</a>
+          <a href="#claim" class="btn-pill-secondary">Reserve Handle</a>
         </div>
 
-        <div class="telemetry-strip">
-          <div class="telemetry-item">
-            <span class="telemetry-dot"></span>
-            <span>Ratchet: <strong>Double Ratchet Active</strong></span>
-          </div>
-          <div class="telemetry-item">
-            <span class="telemetry-dot cyan"></span>
-            <span>Audit: <strong>0 Cloud Logs</strong></span>
-          </div>
-          <div class="telemetry-item">
-            <span class="telemetry-dot"></span>
-            <span>Key Storage: <strong>100% Enclave-Bound</strong></span>
-          </div>
-          <div class="telemetry-item">
-            <span class="telemetry-dot cyan"></span>
-            <span>Latency: <strong>&lt;18ms P2P Relay</strong></span>
-          </div>
-        </div>
-
-        <div class="mockup-wrap">
+        <!-- Interactive Centerpiece: iPhone Frame -->
+        <div class="interactive-preview-wrapper">
           <div class="phone-frame">
-            <div class="phone-inner">
-              <div class="phone-island">
-                <span>9:41</span>
-                <div class="island-notch"></div>
-                <span>5G</span>
-              </div>
-              <div class="chat-bar">
-                <div class="chat-peer">
-                  <div class="peer-avatar">M</div>
-                  <div class="peer-meta">
-                    <strong>@marcus</strong>
-                    <span>Encrypted Channel</span>
+            <div class="phone-bezel">
+              <div class="phone-screen">
+                <!-- Status Bar -->
+                <div class="phone-status-bar">
+                  <span class="status-time">9:41</span>
+                  <div class="dynamic-island"></div>
+                  <div class="status-icons">
+                    <svg width="15" height="11" viewBox="0 0 17 11" fill="#F5F5F7" aria-hidden="true">
+                      <rect x="0" y="7" width="3" height="4" rx="1"/>
+                      <rect x="4.5" y="5" width="3" height="6" rx="1"/>
+                      <rect x="9" y="3" width="3" height="8" rx="1"/>
+                      <rect x="13.5" y="0.5" width="3" height="10.5" rx="1"/>
+                    </svg>
+                    <svg width="15" height="11" viewBox="0 0 16 12" fill="#F5F5F7" aria-hidden="true">
+                      <path d="M8 9.5C8.83 9.5 9.5 8.83 9.5 8C9.5 7.17 8.83 6.5 8 6.5C7.17 6.5 6.5 7.17 6.5 8C6.5 8.83 7.17 9.5 8 9.5ZM8 3.5C10.5 3.5 12.75 4.5 14.36 6.11L15.77 4.7C13.78 2.71 11.03 1.5 8 1.5C4.97 1.5 2.22 2.71 0.23 4.7L1.64 6.11C3.25 4.5 5.5 3.5 8 3.5ZM8 0C11.5 0 14.67 1.45 16.97 3.75L15.56 5.16C13.62 3.22 10.96 2 8 2C5.04 2 2.38 3.22 0.44 5.16L-0.97 3.75C1.33 1.45 4.5 0 8 0Z"/>
+                    </svg>
+                    <div class="battery-icon">
+                      <div class="battery-level"></div>
+                    </div>
                   </div>
                 </div>
-                <div style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-emerald);">E2EE</div>
-              </div>
-              <div class="chat-stream">
-                <div class="bubble bubble-in">
-                  Audit report verified. All relay endpoints show zero persistent logs.
-                  <div class="bubble-meta"><span>09:40</span></div>
+
+                <!-- Chat Header -->
+                <div class="chat-header">
+                  <div class="chat-back">
+                    <svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="#0071E3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="9 15 2 8 9 1"></polyline>
+                    </svg>
+                    <span class="chat-back-count">4</span>
+                  </div>
+                  <div class="chat-recipient">
+                    <div class="recipient-avatar">M</div>
+                    <div class="recipient-meta">
+                      <span class="recipient-name">@marcus</span>
+                      <span id="chat-lifespan-subtitle" class="recipient-status">Encrypted · Silent Lifespan: 24h</span>
+                    </div>
+                  </div>
+                  <div class="chat-info-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0071E3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="16" x2="12" y2="12"></line>
+                      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                  </div>
                 </div>
-                <div class="bubble bubble-out">
-                  Key exchanges completed. Let's seal the channel and set the burn timer.
-                  <div class="bubble-meta"><span>09:41</span></div>
+
+                <!-- Chat Body -->
+                <div class="chat-body" id="chat-messages">
+                  <div class="chat-timestamp">Today 9:41 AM</div>
+
+                  <div class="message-row received">
+                    <div class="message-bubble incoming">
+                      <p class="bubble-text">Did you review the contract draft? Need to ensure nobody else has access before we sign.</p>
+                      <div class="bubble-meta">
+                        <span class="bubble-time">9:41 AM</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="message-row sent">
+                    <div class="message-bubble outgoing">
+                      <p class="bubble-text">Reviewed and approved. Everything is locked down locally. Sending the final sign-off now.</p>
+                      <div class="bubble-meta">
+                        <span class="bubble-time">9:41 AM</span>
+                        <span class="bubble-lifespan-tag" id="bubble-lifespan-indicator">24h lifespan</span>
+                        <span class="bubble-read">Read</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="message-row sent" id="interactive-row">
+                    <div class="message-bubble outgoing interactive-bubble" id="interactive-bubble" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" title="Tap to open message options">
+                      <div class="bubble-interactive-hint">Tap message for options</div>
+                      <p class="bubble-text" id="interactive-text">Confidential financial schedule: reference code VES-8842 attached.</p>
+                      <div class="bubble-meta">
+                        <span class="bubble-time">9:42 AM</span>
+                        <span class="bubble-status">Sent</span>
+                      </div>
+                    </div>
+
+                    <!-- Native iOS Context Action Menu Popover -->
+                    <div class="action-popover" id="action-popover" aria-hidden="true">
+                      <div class="popover-header">Message Actions</div>
+                      <button type="button" class="popover-item destructive" id="btn-delete-everyone">
+                        <span class="popover-icon">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6V20C19 21.1 18.1 22 17 22H7C5.9 22 5 21.1 5 20V6"></path>
+                            <path d="M10 11V17"></path>
+                            <path d="M14 11V17"></path>
+                          </svg>
+                        </span>
+                        <div class="popover-text">
+                          <span class="popover-title">Delete for Everyone</span>
+                          <span class="popover-sub">Removes message from all devices</span>
+                        </div>
+                      </button>
+                      <button type="button" class="popover-item" id="btn-delete-me">
+                        <span class="popover-icon">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20C7 20 2.73 16.11 1 12C1.73 10.28 2.87 8.78 4.28 7.61M9.9 4.24A9.12 9.12 0 0 1 12 4C17 4 21.27 7.89 23 12C22.27 13.72 21.13 15.22 19.72 16.39L1 1"></path>
+                          </svg>
+                        </span>
+                        <div class="popover-text">
+                          <span class="popover-title">Delete for Me</span>
+                          <span class="popover-sub">Removes from this device only</span>
+                        </div>
+                      </button>
+                      <button type="button" class="popover-item" id="btn-copy-text">
+                        <span class="popover-icon">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4C2.9 15 2 14.1 2 13V4C2 2.9 2.9 2 4 2H13C14.1 2 15 2.9 15 4V5"></path>
+                          </svg>
+                        </span>
+                        <div class="popover-text">
+                          <span class="popover-title">Copy Text</span>
+                        </div>
+                      </button>
+                      <button type="button" class="popover-item cancel" id="btn-cancel-popover">Cancel</button>
+                    </div>
+                  </div>
+
+                  <!-- Notification Toast inside screen -->
+                  <div class="screen-toast" id="screen-toast" aria-live="polite"></div>
                 </div>
-                <div class="bubble bubble-decay" id="decay-bubble">
-                  <span id="decay-message">Vespera protocol handshake active. This message self-destructs upon verification.</span>
-                  <div class="bubble-meta"><span>09:41</span></div>
+
+                <!-- Chat Input Bar -->
+                <div class="chat-input-bar">
+                  <div class="input-btn-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#86868B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="8" x2="12" y2="16"></line>
+                      <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                  </div>
+                  <div class="chat-input-field">
+                    <span>iMessage</span>
+                  </div>
+                  <div class="input-btn-send">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="12" y1="19" x2="12" y2="5"></line>
+                      <polyline points="5 12 12 5 19 12"></polyline>
+                    </svg>
+                  </div>
                 </div>
-                <div class="decay-readout">
-                  <span class="readout-label" id="burn-status-display">Timer armed · Standby</span>
-                  <span class="readout-timer" id="burn-timer-display">00:20</span>
-                </div>
-              </div>
-              <div class="decay-controls">
-                <button type="button" class="decay-btn" id="burn-trigger">Trigger Burn Timer</button>
-                <button type="button" class="decay-btn" id="burn-reset">Reset</button>
               </div>
             </div>
+          </div>
+
+          <!-- Calm Lifespan & Preview Controls -->
+          <div class="preview-controls">
+            <div class="control-group">
+              <span class="control-label">Silent Lifespan:</span>
+              <div class="lifespan-pills" role="radiogroup" aria-label="Silent lifespan setting">
+                <button type="button" class="pill-option" data-lifespan="Off">Off</button>
+                <button type="button" class="pill-option" data-lifespan="1h">1 Hour</button>
+                <button type="button" class="pill-option active" data-lifespan="24h">24 Hours</button>
+                <button type="button" class="pill-option" data-lifespan="7d">7 Days</button>
+              </div>
+            </div>
+            <button type="button" id="btn-reset-preview" class="btn-text-subtle">Reset conversation</button>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="container" id="features">
-      <div class="section-header">
-        <span class="section-label">Architecture</span>
-        <h2 class="section-title">Built for absolute confidentiality.</h2>
-        <p class="section-desc">Hardware-isolated cryptography and zero-identity routing engineered for total independence.</p>
-      </div>
-
-      <div class="feature-grid">
-        <!-- Card 01: Cryptographic Identity Badge -->
-        <article class="feature-card card-span-7">
-          <div class="card-top">
-            <span class="card-num">01</span>
-            <span class="card-tag">Identity Isolation</span>
-          </div>
-          <div class="card-body">
-            <h3>Zero-SIM Cryptographic Identity</h3>
-            <p>No phone number, no email address, and no central identity database. Your Curve25519 public key is your sole network address.</p>
-          </div>
-          <div class="id-badge">
-            <div class="id-badge-header">
-              <div class="id-profile">
-                <div class="id-avatar">0x</div>
-                <div class="id-meta">
-                  <strong>@sovereign_peer</strong>
-                  <div class="id-status-pill">
-                    <span class="telemetry-dot"></span>
-                    <span>Enclave Bound</span>
-                  </div>
-                </div>
-              </div>
-              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">Curve25519</div>
-            </div>
-            <div class="id-key-box">
-              <div class="id-key-label">
-                <span>Public Identity Key</span>
-                <span>SHA-256 Verified</span>
-              </div>
-              <div class="id-key-code">x25519:e4f9b872c019d3aa882c50e1948bf817e44a90cd51901a88b</div>
-            </div>
-            <div class="id-badge-footer">
-              <span>Hardware Isolation: Active</span>
-              <span style="color: var(--accent-cyan);">Zero Cloud Indexing</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 02: Interactive Burn Timer / Scrubber -->
-        <article class="feature-card card-span-5">
-          <div class="card-top">
-            <span class="card-num">02</span>
-            <span class="card-tag">Ephemeral Storage</span>
-          </div>
-          <div class="card-body">
-            <h3>Interactive Burn Timer</h3>
-            <p>Configurable cryptographic half-life decay. Messages shred locally from volatile memory without leaving orphaned storage artifacts.</p>
-          </div>
-          <div class="interactive-burn-box">
-            <div class="burn-scrubber-top">
-              <span style="color: var(--text-secondary);">Decay Lifespan:</span>
-              <span class="burn-scrubber-time" id="scrubber-time-val">30s</span>
-            </div>
-            <div class="burn-slider-wrap">
-              <input type="range" class="burn-range" id="burn-scrubber-input" min="5" max="60" value="30" step="5">
-            </div>
-            <div class="burn-preview-text" id="burn-scrubber-preview">
-              Encrypted ephemeral payload initialized. Memory will zero at expiration.
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 03: Acoustic Wave Visualizer -->
-        <article class="feature-card card-span-6">
-          <div class="card-top">
-            <span class="card-num">03</span>
-            <span class="card-tag">Local Telemetry</span>
-          </div>
-          <div class="card-body">
-            <h3>Acoustic Proximity Bump</h3>
-            <p>Zero-network physical pairing over near-ultrasound acoustic telemetry. Verify identity fingerprints in person without camera scans or RF beacons.</p>
-          </div>
-          <div class="acoustic-visualizer">
-            <div class="wave-bars" id="acoustic-wave-bars">
-              <div class="wave-bar" style="height: 35%;"></div>
-              <div class="wave-bar" style="height: 55%;"></div>
-              <div class="wave-bar" style="height: 80%;"></div>
-              <div class="wave-bar" style="height: 45%;"></div>
-              <div class="wave-bar" style="height: 90%;"></div>
-              <div class="wave-bar active" style="height: 100%;"></div>
-              <div class="wave-bar" style="height: 75%;"></div>
-              <div class="wave-bar" style="height: 50%;"></div>
-              <div class="wave-bar" style="height: 65%;"></div>
-              <div class="wave-bar" style="height: 30%;"></div>
-              <div class="wave-bar" style="height: 85%;"></div>
-              <div class="wave-bar" style="height: 40%;"></div>
-              <div class="wave-bar" style="height: 60%;"></div>
-              <div class="wave-bar" style="height: 25%;"></div>
-            </div>
-            <div class="acoustic-meta">
-              <span>Carrier: <strong>19.2 kHz Ultrasound</strong></span>
-              <span style="color: var(--accent-emerald);">0ms P2P Acoustic Link</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 04: Hardware Sensor G-Force Meter -->
-        <article class="feature-card card-span-6">
-          <div class="card-top">
-            <span class="card-num">04</span>
-            <span class="card-tag">Hardware Safety</span>
-          </div>
-          <div class="card-body">
-            <h3>Kinetic Panic Sensor</h3>
-            <p>Physical duress response. A rapid multi-axis shake sensor triggers instant ephemeral key erasure from volatile RAM within milliseconds.</p>
-          </div>
-          <div class="sensor-meter-box">
-            <div class="gforce-dial">
-              <div class="gforce-axis">
-                <span>Accelerometer X</span>
-                <strong id="gforce-x">0.02 G</strong>
-              </div>
-              <div class="gforce-axis">
-                <span>Accelerometer Y</span>
-                <strong id="gforce-y">0.98 G</strong>
-              </div>
-              <div class="gforce-axis">
-                <span>Trigger Threshold</span>
-                <strong style="color: var(--accent-cyan);">4.50 G</strong>
-              </div>
-              <div class="gforce-status-badge">
-                Armed &middot; 5ms RAM Purge
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 05: Native Clients Preview -->
-        <article class="feature-card card-span-12">
-          <div class="card-top">
-            <span class="card-num">05</span>
-            <span class="card-tag">Native Clients</span>
-          </div>
-          <div class="card-body">
-            <h3>Native iPhone &amp; Mac Sovereign Environment</h3>
-            <p>Engineered natively in Swift and Metal for iOS and macOS. Hardware-backed Secure Enclave key storage, instant launch, and zero background telemetry drain.</p>
-          </div>
-          <div class="desktop-preview-frame">
-            <div class="desktop-titlebar">
-              <div class="window-dots">
-                <span class="window-dot" style="background: #FF5F56;"></span>
-                <span class="window-dot" style="background: #FFBD2E;"></span>
-                <span class="window-dot" style="background: #27C93F;"></span>
-              </div>
-              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">Vespera &mdash; Enclave Session [Secure]</div>
-              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-emerald);">● Online</div>
-            </div>
-            <div class="desktop-content">
-              <div class="desktop-sidebar">
-                <div class="desktop-channel-pill active"># sovereign-chat</div>
-                <div class="desktop-channel-pill"># relays-direct</div>
-                <div class="desktop-channel-pill"># ephemeral-keys</div>
-              </div>
-              <div class="desktop-main">
-                <div>[System]: Session key ratchet synchronized with Curve25519 peer.</div>
-                <div style="color: var(--accent-cyan);">[Local RAM]: Ephemeral buffers verified clear of plaintext cache.</div>
-                <div style="display: flex; justify-content: space-between; margin-top: 16px; border-top: 1px solid var(--surface-border-subtle); padding-top: 10px;">
-                  <span>Channel Integrity: 100%</span>
-                  <span style="color: var(--text-tertiary);">Zero Central Logs</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="protocol-section" id="protocol">
+    <!-- 4 Numbered Apple-Style Feature Sections -->
+    <section class="features-section" id="features">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Cryptography</span>
-          <h2 class="section-title">A clean protocol stack.</h2>
+          <span class="section-tag">Core Architecture</span>
+          <h2 class="section-title">Designed for trust. Built for speed.</h2>
+          <p class="section-subtitle">
+            Every layer of Vespera is stripped of compromises. No telecommunication surveillance, no central databases, and zero unencrypted data on disk.
+          </p>
         </div>
-        <div class="protocol-grid">
-          <div class="protocol-box">
-            <h4>Blind Relay Network</h4>
-            <p>Relay nodes forward ciphertext envelopes with zero visibility into sender or recipient network addresses.</p>
-          </div>
-          <div class="protocol-box">
-            <h4>Double-Ratchet Sessions</h4>
-            <p>Every single message derives a fresh session key, ensuring complete forward secrecy and break-in recovery.</p>
-          </div>
-          <div class="protocol-box">
-            <h4>Zero Metadata Footprint</h4>
-            <p>No contact graph generated, no delivery receipts indexed, and no activity timestamps retained on network nodes.</p>
-          </div>
+
+        <div class="features-grid">
+          <!-- 01 Zero-SIM Identity -->
+          <article class="feature-card">
+            <div class="card-number">01</div>
+            <h3 class="card-title">Zero-SIM Identity</h3>
+            <p class="card-desc">
+              Communicate freely without ever disclosing your phone number or uploading your contact book. Your cryptographic handle belongs entirely to you, eliminating SIM-swap exploits and global directory indexing.
+            </p>
+            <div class="card-visual">
+              <div class="pill-tag-demo">
+                <span class="tag-label">Handle</span>
+                <span class="tag-value">@starlin</span>
+                <span class="tag-status">Device-Bound</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02 Silent Lifespan & Remote Shred -->
+          <article class="feature-card">
+            <div class="card-number">02</div>
+            <h3 class="card-title">Silent Lifespan & Remote Shred</h3>
+            <p class="card-desc">
+              Mistakes happen. Delete messages on your phone or wipe them remotely from the recipient device with Delete for Everyone. Set calm background lifespans of 1 hour, 24 hours, or 7 days that quietly clear conversations without stress.
+            </p>
+            <div class="card-visual">
+              <div class="shred-badge-demo">
+                <span class="shred-status-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </span>
+                <span class="shred-status-text">Delete for Everyone verified across devices</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03 Direct Enclave Shield -->
+          <article class="feature-card">
+            <div class="card-number">03</div>
+            <h3 class="card-title">Direct Enclave Shield</h3>
+            <p class="card-desc">
+              Private keys stay isolated inside your device hardware security module. No central database stores your conversations, and zero cloud backups exist to be compromised or subpoenaed.
+            </p>
+            <div class="card-visual">
+              <div class="enclave-badge-demo">
+                <span class="enclave-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5F5F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7C7 4.24 9.24 2 12 2C14.76 2 17 4.24 17 7V11"></path>
+                  </svg>
+                </span>
+                <span class="enclave-text">Hardware Keymaster & Secure Enclave bound</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04 Instant Apple-Grade Speed -->
+          <article class="feature-card">
+            <div class="card-number">04</div>
+            <h3 class="card-title">Instant Apple-Grade Speed</h3>
+            <p class="card-desc">
+              Engineered natively for iOS and macOS. Instant launches, fluid 120Hz scrolling, and sub-millisecond local caching deliver the responsiveness of iMessage with absolute privacy.
+            </p>
+            <div class="card-visual">
+              <div class="performance-badge-demo">
+                <span class="perf-stat">120 Hz</span>
+                <span class="perf-label">Fluid Metal UI and instant offline search</span>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
+    <!-- Handle Claim Section -->
     <section class="claim-section" id="claim">
-      <div class="container claim-wrap">
-        <span class="section-label">Early Access</span>
-        <h2 class="section-title">Claim your sovereign handle.</h2>
-        <p style="color: var(--text-secondary); margin-top: 12px; font-size: 15px;">Reserve your unique cryptographic handle ahead of public client releases.</p>
-        <form class="claim-form" id="claim-form">
-          <div class="claim-input-box">
-            <span class="claim-prefix">@</span>
-            <input type="text" class="claim-input" id="claim-input" placeholder="handle" required maxlength="24">
-          </div>
-          <button type="submit" class="pill-btn pill-btn-primary">Reserve</button>
-        </form>
-        <span class="claim-note">Handles are 3–24 alphanumeric characters.</span>
+      <div class="container claim-container">
+        <div class="claim-card">
+          <span class="section-tag">Early Access</span>
+          <h2 class="claim-title">Reserve your handle.</h2>
+          <p class="claim-desc">
+            Secure your permanent cryptographic handle ahead of the public release. Handles are reserved on a first-come, first-served basis.
+          </p>
+
+          <form id="claim-form" class="claim-form" novalidate>
+            <div class="claim-input-group">
+              <span class="input-prefix">@</span>
+              <input type="text" id="claim-input" class="claim-input" placeholder="handle" autocomplete="off" spellcheck="false" required maxlength="24">
+              <button type="submit" class="btn-pill-primary claim-submit">Reserve</button>
+            </div>
+            <span class="claim-helper">3 to 24 characters. Letters, numbers, and underscores only.</span>
+          </form>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
+  <!-- Reservation Confirmation Modal -->
+  <div id="claim-modal" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h3 id="modal-title" class="modal-title">Handle Reserved</h3>
+      <p class="modal-body">
+        The handle <strong id="modal-handle-text">@handle</strong> has been reserved for your device. You will receive first priority when Vespera launches.
+      </p>
+      <button type="button" id="modal-close" class="btn-pill-primary modal-action">Done</button>
+    </div>
+  </div>
+
+  <!-- Minimal Apple-Grade Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
       <div class="footer-top">
-        <div>
-          <a class="brand" href="index.html">
-            <span class="brand-symbol">V</span>
-            <span>VESPERA</span>
-          </a>
-          <p style="color: var(--text-secondary); font-size: 13px; margin-top: 12px; max-width: 280px;">Sovereign, zero-identifier private communication platform.</p>
+        <div class="footer-brand">
+          <span class="brand-text">Vespera</span>
+          <p class="footer-tagline">Sovereign private messaging with Apple-grade clarity.</p>
         </div>
-        <div class="footer-nav">
-          <div class="footer-col">
-            <h5>Navigation</h5>
-            <ul>
-              <li><a href="index.html">Platform</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="download.html">Download</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h5>Protocol</h5>
-            <ul>
-              <li><a href="about.html#cryptography">Cryptography</a></li>
-              <li><a href="about.html#philosophy">Philosophy</a></li>
-              <li><a href="download.html#specs">System Specs</a></li>
-            </ul>
-          </div>
+        <div class="footer-links">
+          <a href="#features" class="footer-link">Features</a>
+          <a href="about.html" class="footer-link">About</a>
+          <a href="download.html" class="footer-link">Download</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>VESPERA ARCHITECTURE · SOVEREIGN PROTOCOL</span>
-        <span>ZERO METADATA · ZERO SIM</span>
+        <p class="copyright">2026 Vespera. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <div class="modal-overlay" id="claim-modal" role="dialog" aria-modal="true">
-    <div class="modal-card">
-      <h3 id="modal-handle-text">@handle</h3>
-      <p>Handle preview recorded. No phone number or personal details required. Early access invitations will route through verified blind keys.</p>
-      <button type="button" class="pill-btn pill-btn-primary" id="modal-close" style="width: 100%;">Close</button>
-    </div>
-  </div>
+  <script src="app.js"></script>
 </body>
 </html>

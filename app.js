@@ -9,7 +9,6 @@
     menuToggle.addEventListener('click', () => {
       const isOpen = mobileDrawer.classList.toggle('open');
       menuToggle.setAttribute('aria-expanded', String(isOpen));
-      menuToggle.textContent = isOpen ? '✕' : '☰';
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 
@@ -17,8 +16,166 @@
       link.addEventListener('click', () => {
         mobileDrawer.classList.remove('open');
         menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.textContent = '☰';
         document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Interactive Chat Centerpiece
+  const interactiveBubble = document.getElementById('interactive-bubble');
+  const actionPopover = document.getElementById('action-popover');
+  const btnDeleteEveryone = document.getElementById('btn-delete-everyone');
+  const btnDeleteMe = document.getElementById('btn-delete-me');
+  const btnCopyText = document.getElementById('btn-copy-text');
+  const btnCancelPopover = document.getElementById('btn-cancel-popover');
+  const screenToast = document.getElementById('screen-toast');
+  const interactiveText = document.getElementById('interactive-text');
+  const btnResetPreview = document.getElementById('btn-reset-preview');
+
+  // Lifespan Controls
+  const lifespanSubtitle = document.getElementById('chat-lifespan-subtitle');
+  const bubbleLifespanIndicator = document.getElementById('bubble-lifespan-indicator');
+  const lifespanPills = document.querySelectorAll('.pill-option');
+
+  function showToast(message) {
+    if (!screenToast) return;
+    screenToast.textContent = message;
+    screenToast.classList.add('show');
+    setTimeout(() => {
+      screenToast.classList.remove('show');
+    }, 2400);
+  }
+
+  function closePopover() {
+    if (actionPopover) {
+      actionPopover.classList.remove('active');
+    }
+    if (interactiveBubble) {
+      interactiveBubble.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  if (interactiveBubble && actionPopover) {
+    interactiveBubble.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (interactiveBubble.classList.contains('deleted-shredded')) return;
+      const isExpanded = actionPopover.classList.toggle('active');
+      interactiveBubble.setAttribute('aria-expanded', String(isExpanded));
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!actionPopover.contains(e.target) && e.target !== interactiveBubble) {
+        closePopover();
+      }
+    });
+
+    if (btnCancelPopover) {
+      btnCancelPopover.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closePopover();
+      });
+    }
+
+    // Delete for Everyone
+    if (btnDeleteEveryone) {
+      btnDeleteEveryone.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closePopover();
+        interactiveBubble.classList.add('deleted-shredded');
+        interactiveBubble.removeAttribute('role');
+        interactiveBubble.removeAttribute('tabindex');
+        interactiveText.textContent = 'You deleted this message for everyone';
+        showToast('Message shredded across all devices');
+      });
+    }
+
+    // Delete for Me
+    if (btnDeleteMe) {
+      btnDeleteMe.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closePopover();
+        const interactiveRow = document.getElementById('interactive-row');
+        if (interactiveRow) {
+          interactiveRow.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+          interactiveRow.style.opacity = '0';
+          interactiveRow.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            interactiveRow.style.display = 'none';
+          }, 250);
+        }
+        showToast('Message removed from this device');
+      });
+    }
+
+    // Copy Text
+    if (btnCopyText) {
+      btnCopyText.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closePopover();
+        if (interactiveText) {
+          navigator.clipboard.writeText(interactiveText.textContent).catch(() => {});
+        }
+        showToast('Message copied to clipboard');
+      });
+    }
+  }
+
+  // Reset Conversation Preview
+  if (btnResetPreview) {
+    btnResetPreview.addEventListener('click', () => {
+      closePopover();
+      const interactiveRow = document.getElementById('interactive-row');
+      if (interactiveRow) {
+        interactiveRow.style.display = 'flex';
+        interactiveRow.style.opacity = '1';
+        interactiveRow.style.transform = 'none';
+      }
+      if (interactiveBubble && interactiveText) {
+        interactiveBubble.classList.remove('deleted-shredded');
+        interactiveBubble.setAttribute('role', 'button');
+        interactiveBubble.setAttribute('tabindex', '0');
+        interactiveText.textContent = 'Confidential financial schedule: reference code VES-8842 attached.';
+      }
+      showToast('Conversation preview reset');
+    });
+  }
+
+  // Silent Lifespan Selectors
+  if (lifespanPills.length > 0) {
+    lifespanPills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        lifespanPills.forEach((p) => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        const lifespan = pill.getAttribute('data-lifespan');
+        let label = '24h';
+        let sub = 'Encrypted · Silent Lifespan: 24h';
+
+        if (lifespan === 'Off') {
+          label = 'Lifespan off';
+          sub = 'Encrypted · No auto-expiration';
+        } else if (lifespan === '1h') {
+          label = '1h lifespan';
+          sub = 'Encrypted · Silent Lifespan: 1h';
+        } else if (lifespan === '24h') {
+          label = '24h lifespan';
+          sub = 'Encrypted · Silent Lifespan: 24h';
+        } else if (lifespan === '7d') {
+          label = '7d lifespan';
+          sub = 'Encrypted · Silent Lifespan: 7d';
+        }
+
+        if (lifespanSubtitle) {
+          lifespanSubtitle.textContent = sub;
+        }
+
+        if (bubbleLifespanIndicator) {
+          bubbleLifespanIndicator.textContent = label;
+          bubbleLifespanIndicator.style.display = lifespan === 'Off' ? 'none' : 'inline-block';
+        }
+
+        showToast(`Silent lifespan updated to ${lifespan}`);
       });
     });
   }
@@ -34,8 +191,8 @@
     claimForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const val = claimInput.value.trim().replace(/^@/, '');
-      if (!/^[a-zA-Z][a-zA-Z0-9_]{2,23}$/.test(val)) {
-        alert('Please enter a valid handle: 3-24 characters, letters, numbers, or underscores.');
+      if (!/^[a-zA-Z0-9_]{3,24}$/.test(val)) {
+        alert('Please enter a valid handle: 3 to 24 characters with letters, numbers, or underscores.');
         return;
       }
       if (modalHandleText) {
@@ -61,156 +218,5 @@
         modalOverlay.classList.remove('active');
       }
     });
-  }
-
-  // Hero Mockup Burn Timer Simulation
-  const triggerBtn = document.getElementById('burn-trigger');
-  const resetBtn = document.getElementById('burn-reset');
-  const timerDisplay = document.getElementById('burn-timer-display');
-  const statusDisplay = document.getElementById('burn-status-display');
-  const decayBubble = document.getElementById('decay-bubble');
-  const decayMessage = document.getElementById('decay-message');
-
-  if (triggerBtn && timerDisplay && statusDisplay && decayBubble && decayMessage) {
-    const totalDuration = 20; // 20 seconds total
-    const legibilityThreshold = 0.8; // 80% duration is completely legible (~16s)
-    let animationFrame = null;
-    let startTime = 0;
-    let isRunning = false;
-
-    const originalText = decayMessage.textContent;
-
-    function updateSimulation(timestamp) {
-      if (!startTime) startTime = timestamp;
-      const elapsed = (timestamp - startTime) / 1000;
-      const progress = Math.min(1, elapsed / totalDuration);
-      const remainingSeconds = Math.max(0, Math.ceil(totalDuration - elapsed));
-
-      timerDisplay.textContent = `00:${String(remainingSeconds).padStart(2, '0')}`;
-
-      if (progress < legibilityThreshold) {
-        const remainingPct = Math.round((1 - progress) * 100);
-        statusDisplay.textContent = `Decay active · ${remainingPct}% signal integrity`;
-        decayBubble.style.opacity = '1';
-        decayBubble.style.filter = 'none';
-        decayMessage.textContent = originalText;
-      } else {
-        const decayPhase = (progress - legibilityThreshold) / (1 - legibilityThreshold); // 0 to 1
-        const opacity = Math.max(0.05, 1 - decayPhase * 0.95);
-        const blurAmount = (decayPhase * 5).toFixed(1);
-
-        statusDisplay.textContent = progress >= 1 ? 'Message shredded from local RAM' : 'Shredding cryptographic payload...';
-        decayBubble.style.opacity = String(opacity);
-        decayBubble.style.filter = `blur(${blurAmount}px)`;
-
-        if (progress >= 1) {
-          decayBubble.classList.add('faded');
-          decayMessage.textContent = '· · · [ shredded ] · · ·';
-          isRunning = false;
-          triggerBtn.disabled = false;
-          triggerBtn.textContent = 'Replay Burn Timer';
-          return;
-        } else {
-          const chars = originalText.split('');
-          const scrambled = chars.map((char, index) => {
-            if (char === ' ') return ' ';
-            const charNoise = (Math.sin(index * 99 + elapsed * 10) + 1) / 2;
-            return charNoise < decayPhase ? '█' : char;
-          }).join('');
-          decayMessage.textContent = scrambled;
-        }
-      }
-
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(updateSimulation);
-      }
-    }
-
-    function startDecay() {
-      if (isRunning) return;
-      isRunning = true;
-      triggerBtn.disabled = true;
-      triggerBtn.textContent = 'Burning...';
-      startTime = 0;
-      decayBubble.classList.remove('faded');
-      decayBubble.style.opacity = '1';
-      decayBubble.style.filter = 'none';
-      decayMessage.textContent = originalText;
-      animationFrame = requestAnimationFrame(updateSimulation);
-    }
-
-    function resetDecay() {
-      if (animationFrame) cancelAnimationFrame(animationFrame);
-      isRunning = false;
-      startTime = 0;
-      triggerBtn.disabled = false;
-      triggerBtn.textContent = 'Trigger Burn Timer';
-      timerDisplay.textContent = '00:20';
-      statusDisplay.textContent = 'Timer armed · Standby';
-      decayBubble.classList.remove('faded');
-      decayBubble.style.opacity = '1';
-      decayBubble.style.filter = 'none';
-      decayMessage.textContent = originalText;
-    }
-
-    triggerBtn.addEventListener('click', startDecay);
-    if (resetBtn) resetBtn.addEventListener('click', resetDecay);
-  }
-
-  // Interactive Burn Timer Scrubber (Card 02)
-  const burnScrubberInput = document.getElementById('burn-scrubber-input');
-  const scrubberTimeVal = document.getElementById('scrubber-time-val');
-  const burnScrubberPreview = document.getElementById('burn-scrubber-preview');
-
-  if (burnScrubberInput && scrubberTimeVal && burnScrubberPreview) {
-    const defaultText = "Encrypted ephemeral payload initialized. Memory will zero at expiration.";
-    burnScrubberInput.addEventListener('input', (e) => {
-      const val = parseInt(e.target.value, 10);
-      scrubberTimeVal.textContent = `${val}s`;
-      if (val <= 10) {
-        burnScrubberPreview.style.filter = 'blur(2px)';
-        burnScrubberPreview.style.opacity = '0.5';
-        burnScrubberPreview.textContent = '█ █ █ [ Ephemeral payload decaying ] █ █ █';
-      } else if (val <= 20) {
-        burnScrubberPreview.style.filter = 'blur(0.5px)';
-        burnScrubberPreview.style.opacity = '0.8';
-        burnScrubberPreview.textContent = defaultText;
-      } else {
-        burnScrubberPreview.style.filter = 'none';
-        burnScrubberPreview.style.opacity = '1';
-        burnScrubberPreview.textContent = defaultText;
-      }
-    });
-  }
-
-  // Dynamic Acoustic Wave Simulation (Card 03)
-  const waveBarsContainer = document.getElementById('acoustic-wave-bars');
-  if (waveBarsContainer) {
-    const bars = waveBarsContainer.querySelectorAll('.wave-bar');
-    let waveStep = 0;
-    setInterval(() => {
-      waveStep += 0.2;
-      bars.forEach((bar, idx) => {
-        const height = Math.abs(Math.sin(waveStep + idx * 0.4)) * 75 + 20;
-        bar.style.height = `${height.toFixed(0)}%`;
-        if (height > 85) {
-          bar.classList.add('active');
-        } else {
-          bar.classList.remove('active');
-        }
-      });
-    }, 120);
-  }
-
-  // Subtle Sensor Meter Jitter Simulation (Card 04)
-  const gforceX = document.getElementById('gforce-x');
-  const gforceY = document.getElementById('gforce-y');
-  if (gforceX && gforceY) {
-    setInterval(() => {
-      const jitterX = (0.01 + Math.random() * 0.03).toFixed(2);
-      const jitterY = (0.97 + Math.random() * 0.04).toFixed(2);
-      gforceX.textContent = `${jitterX} G`;
-      gforceY.textContent = `${jitterY} G`;
-    }, 1500);
   }
 })();
