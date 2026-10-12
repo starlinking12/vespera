@@ -63,7 +63,7 @@
     });
   }
 
-  // Burn Timer Simulation
+  // Hero Mockup Burn Timer Simulation
   const triggerBtn = document.getElementById('burn-trigger');
   const resetBtn = document.getElementById('burn-reset');
   const timerDisplay = document.getElementById('burn-timer-display');
@@ -89,14 +89,12 @@
       timerDisplay.textContent = `00:${String(remainingSeconds).padStart(2, '0')}`;
 
       if (progress < legibilityThreshold) {
-        // First 80%: Text remains crisp and readable
         const remainingPct = Math.round((1 - progress) * 100);
         statusDisplay.textContent = `Decay active · ${remainingPct}% signal integrity`;
         decayBubble.style.opacity = '1';
         decayBubble.style.filter = 'none';
         decayMessage.textContent = originalText;
       } else {
-        // Final 20%: Smooth dimming, subtle blur, dissolving into fine digital noise
         const decayPhase = (progress - legibilityThreshold) / (1 - legibilityThreshold); // 0 to 1
         const opacity = Math.max(0.05, 1 - decayPhase * 0.95);
         const blurAmount = (decayPhase * 5).toFixed(1);
@@ -113,12 +111,11 @@
           triggerBtn.textContent = 'Replay Burn Timer';
           return;
         } else {
-          // Scramble characters based on decay phase
           const chars = originalText.split('');
           const scrambled = chars.map((char, index) => {
             if (char === ' ') return ' ';
             const charNoise = (Math.sin(index * 99 + elapsed * 10) + 1) / 2;
-            return charNoise < decayPhase ? '░' : char;
+            return charNoise < decayPhase ? '█' : char;
           }).join('');
           decayMessage.textContent = scrambled;
         }
@@ -158,5 +155,62 @@
 
     triggerBtn.addEventListener('click', startDecay);
     if (resetBtn) resetBtn.addEventListener('click', resetDecay);
+  }
+
+  // Interactive Burn Timer Scrubber (Card 02)
+  const burnScrubberInput = document.getElementById('burn-scrubber-input');
+  const scrubberTimeVal = document.getElementById('scrubber-time-val');
+  const burnScrubberPreview = document.getElementById('burn-scrubber-preview');
+
+  if (burnScrubberInput && scrubberTimeVal && burnScrubberPreview) {
+    const defaultText = "Encrypted ephemeral payload initialized. Memory will zero at expiration.";
+    burnScrubberInput.addEventListener('input', (e) => {
+      const val = parseInt(e.target.value, 10);
+      scrubberTimeVal.textContent = `${val}s`;
+      if (val <= 10) {
+        burnScrubberPreview.style.filter = 'blur(2px)';
+        burnScrubberPreview.style.opacity = '0.5';
+        burnScrubberPreview.textContent = '█ █ █ [ Ephemeral payload decaying ] █ █ █';
+      } else if (val <= 20) {
+        burnScrubberPreview.style.filter = 'blur(0.5px)';
+        burnScrubberPreview.style.opacity = '0.8';
+        burnScrubberPreview.textContent = defaultText;
+      } else {
+        burnScrubberPreview.style.filter = 'none';
+        burnScrubberPreview.style.opacity = '1';
+        burnScrubberPreview.textContent = defaultText;
+      }
+    });
+  }
+
+  // Dynamic Acoustic Wave Simulation (Card 03)
+  const waveBarsContainer = document.getElementById('acoustic-wave-bars');
+  if (waveBarsContainer) {
+    const bars = waveBarsContainer.querySelectorAll('.wave-bar');
+    let waveStep = 0;
+    setInterval(() => {
+      waveStep += 0.2;
+      bars.forEach((bar, idx) => {
+        const height = Math.abs(Math.sin(waveStep + idx * 0.4)) * 75 + 20;
+        bar.style.height = `${height.toFixed(0)}%`;
+        if (height > 85) {
+          bar.classList.add('active');
+        } else {
+          bar.classList.remove('active');
+        }
+      });
+    }, 120);
+  }
+
+  // Subtle Sensor Meter Jitter Simulation (Card 04)
+  const gforceX = document.getElementById('gforce-x');
+  const gforceY = document.getElementById('gforce-y');
+  if (gforceX && gforceY) {
+    setInterval(() => {
+      const jitterX = (0.01 + Math.random() * 0.03).toFixed(2);
+      const jitterY = (0.97 + Math.random() * 0.04).toFixed(2);
+      gforceX.textContent = `${jitterX} G`;
+      gforceY.textContent = `${jitterY} G`;
+    }, 1500);
   }
 })();
