@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#000000">
-  <meta name="description" content="Vespera — Private, zero-identifier communication platform. Sovereign encryption without telephone numbers or centralized directories.">
+  <meta name="theme-color" content="#05070B">
+  <meta name="description" content="Vespera — Sovereign cryptographic messaging. Zero telephone numbers, zero metadata, hardware enclave security.">
   <title>Vespera — Private Sovereign Communication</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
@@ -13,10 +13,11 @@
   <div class="page-ambient" aria-hidden="true"></div>
 
   <header class="site-header">
-    <div class="container header-inner">
+    <div class="pill-navbar">
       <a class="brand" href="index.html" aria-label="Vespera Home">
         <span class="brand-symbol">V</span>
         <span>VESPERA</span>
+        <span class="nav-status" title="Network Operational"></span>
       </a>
       <nav class="nav-links" aria-label="Main Navigation">
         <a href="#features" class="active">Features</a>
@@ -53,6 +54,25 @@
           <a href="about.html" class="pill-btn pill-btn-secondary">Read Architecture</a>
         </div>
 
+        <div class="telemetry-strip">
+          <div class="telemetry-item">
+            <span class="telemetry-dot"></span>
+            <span>Ratchet: <strong>Double Ratchet Active</strong></span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-dot cyan"></span>
+            <span>Audit: <strong>0 Cloud Logs</strong></span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-dot"></span>
+            <span>Key Storage: <strong>100% Enclave-Bound</strong></span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-dot cyan"></span>
+            <span>Latency: <strong>&lt;18ms P2P Relay</strong></span>
+          </div>
+        </div>
+
         <div class="mockup-wrap">
           <div class="phone-frame">
             <div class="phone-inner">
@@ -69,7 +89,7 @@
                     <span>Encrypted Channel</span>
                   </div>
                 </div>
-                <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">E2EE</div>
+                <div style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-emerald);">E2EE</div>
               </div>
               <div class="chat-stream">
                 <div class="bubble bubble-in">
@@ -103,51 +123,173 @@
       <div class="section-header">
         <span class="section-label">Architecture</span>
         <h2 class="section-title">Built for absolute confidentiality.</h2>
+        <p class="section-desc">Hardware-isolated cryptography and zero-identity routing engineered for total independence.</p>
       </div>
+
       <div class="feature-grid">
-        <article class="feature-card">
-          <div class="card-num">01</div>
-          <div class="card-body">
-            <h3>Zero-SIM Identity</h3>
-            <p>No phone number, no email address, and no central identity database. Your cryptographic public key is your sole network address.</p>
+        <!-- Card 01: Cryptographic Identity Badge -->
+        <article class="feature-card card-span-7">
+          <div class="card-top">
+            <span class="card-num">01</span>
+            <span class="card-tag">Identity Isolation</span>
           </div>
-          <span class="card-tag">Identity Isolation</span>
+          <div class="card-body">
+            <h3>Zero-SIM Cryptographic Identity</h3>
+            <p>No phone number, no email address, and no central identity database. Your Curve25519 public key is your sole network address.</p>
+          </div>
+          <div class="id-badge">
+            <div class="id-badge-header">
+              <div class="id-profile">
+                <div class="id-avatar">0x</div>
+                <div class="id-meta">
+                  <strong>@sovereign_peer</strong>
+                  <div class="id-status-pill">
+                    <span class="telemetry-dot"></span>
+                    <span>Enclave Bound</span>
+                  </div>
+                </div>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">Curve25519</div>
+            </div>
+            <div class="id-key-box">
+              <div class="id-key-label">
+                <span>Public Identity Key</span>
+                <span>SHA-256 Verified</span>
+              </div>
+              <div class="id-key-code">x25519:e4f9b872c019d3aa882c50e1948bf817e44a90cd51901a88b</div>
+            </div>
+            <div class="id-badge-footer">
+              <span>Hardware Isolation: Active</span>
+              <span style="color: var(--accent-cyan);">Zero Cloud Indexing</span>
+            </div>
+          </div>
         </article>
 
-        <article class="feature-card">
-          <div class="card-num">02</div>
+        <!-- Card 02: Interactive Burn Timer / Scrubber -->
+        <article class="feature-card card-span-5">
+          <div class="card-top">
+            <span class="card-num">02</span>
+            <span class="card-tag">Ephemeral Storage</span>
+          </div>
           <div class="card-body">
-            <h3>Burn Timer</h3>
+            <h3>Interactive Burn Timer</h3>
             <p>Configurable cryptographic half-life decay. Messages shred locally from volatile memory without leaving orphaned storage artifacts.</p>
           </div>
-          <span class="card-tag">Ephemeral Storage</span>
-        </article>
-
-        <article class="feature-card">
-          <div class="card-num">03</div>
-          <div class="card-body">
-            <h3>Acoustic Bump</h3>
-            <p>Zero-network physical pairing over near-ultrasound acoustic telemetry. Verify identity fingerprints in person without camera scans.</p>
+          <div class="interactive-burn-box">
+            <div class="burn-scrubber-top">
+              <span style="color: var(--text-secondary);">Decay Lifespan:</span>
+              <span class="burn-scrubber-time" id="scrubber-time-val">30s</span>
+            </div>
+            <div class="burn-slider-wrap">
+              <input type="range" class="burn-range" id="burn-scrubber-input" min="5" max="60" value="30" step="5">
+            </div>
+            <div class="burn-preview-text" id="burn-scrubber-preview">
+              Encrypted ephemeral payload initialized. Memory will zero at expiration.
+            </div>
           </div>
-          <span class="card-tag">Local Telemetry</span>
         </article>
 
-        <article class="feature-card">
-          <div class="card-num">04</div>
+        <!-- Card 03: Acoustic Wave Visualizer -->
+        <article class="feature-card card-span-6">
+          <div class="card-top">
+            <span class="card-num">03</span>
+            <span class="card-tag">Local Telemetry</span>
+          </div>
           <div class="card-body">
-            <h3>Kinetic Panic</h3>
+            <h3>Acoustic Proximity Bump</h3>
+            <p>Zero-network physical pairing over near-ultrasound acoustic telemetry. Verify identity fingerprints in person without camera scans or RF beacons.</p>
+          </div>
+          <div class="acoustic-visualizer">
+            <div class="wave-bars" id="acoustic-wave-bars">
+              <div class="wave-bar" style="height: 35%;"></div>
+              <div class="wave-bar" style="height: 55%;"></div>
+              <div class="wave-bar" style="height: 80%;"></div>
+              <div class="wave-bar" style="height: 45%;"></div>
+              <div class="wave-bar" style="height: 90%;"></div>
+              <div class="wave-bar active" style="height: 100%;"></div>
+              <div class="wave-bar" style="height: 75%;"></div>
+              <div class="wave-bar" style="height: 50%;"></div>
+              <div class="wave-bar" style="height: 65%;"></div>
+              <div class="wave-bar" style="height: 30%;"></div>
+              <div class="wave-bar" style="height: 85%;"></div>
+              <div class="wave-bar" style="height: 40%;"></div>
+              <div class="wave-bar" style="height: 60%;"></div>
+              <div class="wave-bar" style="height: 25%;"></div>
+            </div>
+            <div class="acoustic-meta">
+              <span>Carrier: <strong>19.2 kHz Ultrasound</strong></span>
+              <span style="color: var(--accent-emerald);">0ms P2P Acoustic Link</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 04: Hardware Sensor G-Force Meter -->
+        <article class="feature-card card-span-6">
+          <div class="card-top">
+            <span class="card-num">04</span>
+            <span class="card-tag">Hardware Safety</span>
+          </div>
+          <div class="card-body">
+            <h3>Kinetic Panic Sensor</h3>
             <p>Physical duress response. A rapid multi-axis shake sensor triggers instant ephemeral key erasure from volatile RAM within milliseconds.</p>
           </div>
-          <span class="card-tag">Hardware Safety</span>
+          <div class="sensor-meter-box">
+            <div class="gforce-dial">
+              <div class="gforce-axis">
+                <span>Accelerometer X</span>
+                <strong id="gforce-x">0.02 G</strong>
+              </div>
+              <div class="gforce-axis">
+                <span>Accelerometer Y</span>
+                <strong id="gforce-y">0.98 G</strong>
+              </div>
+              <div class="gforce-axis">
+                <span>Trigger Threshold</span>
+                <strong style="color: var(--accent-cyan);">4.50 G</strong>
+              </div>
+              <div class="gforce-status-badge">
+                Armed &middot; 5ms RAM Purge
+              </div>
+            </div>
+          </div>
         </article>
 
-        <article class="feature-card">
-          <div class="card-num">05</div>
-          <div class="card-body">
-            <h3>Native iPhone &amp; Mac</h3>
-            <p>Engineered natively in Swift and Metal for iOS and macOS. Instant launch, hardware-backed Secure Enclave key storage, and zero background drain.</p>
+        <!-- Card 05: Native Clients Preview -->
+        <article class="feature-card card-span-12">
+          <div class="card-top">
+            <span class="card-num">05</span>
+            <span class="card-tag">Native Clients</span>
           </div>
-          <span class="card-tag">Native Clients</span>
+          <div class="card-body">
+            <h3>Native iPhone &amp; Mac Sovereign Environment</h3>
+            <p>Engineered natively in Swift and Metal for iOS and macOS. Hardware-backed Secure Enclave key storage, instant launch, and zero background telemetry drain.</p>
+          </div>
+          <div class="desktop-preview-frame">
+            <div class="desktop-titlebar">
+              <div class="window-dots">
+                <span class="window-dot" style="background: #FF5F56;"></span>
+                <span class="window-dot" style="background: #FFBD2E;"></span>
+                <span class="window-dot" style="background: #27C93F;"></span>
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">Vespera &mdash; Enclave Session [Secure]</div>
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-emerald);">● Online</div>
+            </div>
+            <div class="desktop-content">
+              <div class="desktop-sidebar">
+                <div class="desktop-channel-pill active"># sovereign-chat</div>
+                <div class="desktop-channel-pill"># relays-direct</div>
+                <div class="desktop-channel-pill"># ephemeral-keys</div>
+              </div>
+              <div class="desktop-main">
+                <div>[System]: Session key ratchet synchronized with Curve25519 peer.</div>
+                <div style="color: var(--accent-cyan);">[Local RAM]: Ephemeral buffers verified clear of plaintext cache.</div>
+                <div style="display: flex; justify-content: space-between; margin-top: 16px; border-top: 1px solid var(--surface-border-subtle); padding-top: 10px;">
+                  <span>Channel Integrity: 100%</span>
+                  <span style="color: var(--text-tertiary);">Zero Central Logs</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </article>
       </div>
     </section>
