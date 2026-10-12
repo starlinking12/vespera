@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Download Vespera — Native secure clients for iOS, macOS, and Android.">
+  <title>Download — Vespera Clients</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="page-ambient" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Vespera Home">
+        <span class="brand-symbol">V</span>
+        <span>VESPERA</span>
+      </a>
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#protocol">Protocol</a>
+        <a href="about.html">About</a>
+        <a href="download.html" class="active">Download</a>
+      </nav>
+      <div class="header-actions">
+        <a href="index.html#claim" class="pill-btn pill-btn-primary">Reserve Handle</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <a href="index.html#features">Features</a>
+    <a href="index.html#protocol">Protocol</a>
+    <a href="about.html">About</a>
+    <a href="download.html">Download</a>
+    <a href="index.html#claim" class="pill-btn pill-btn-primary" style="text-align: center;">Reserve Handle</a>
+  </div>
+
+  <main>
+    <div class="container">
+      <div class="about-hero" style="text-align: center; margin: 0 auto;">
+        <span class="section-label">Client Applications</span>
+        <h1 class="hero-title">Vespera on your devices.</h1>
+        <p class="hero-desc">Native desktop and mobile clients built for low latency, hardware enclave key protection, and absolute local privacy.</p>
+      </div>
+
+      <div class="download-grid" id="specs">
+        <div class="download-card">
+          <div>
+            <div class="download-card-header">
+              <span class="platform-badge">APPLE ECOSYSTEM</span>
+            </div>
+            <h3>iOS &amp; iPadOS</h3>
+            <span class="version-tag">Beta 1.0 · Build 412</span>
+            <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">Native client written in Swift and SwiftUI. Complete integration with Apple Secure Enclave.</p>
+            <ul class="spec-list">
+              <li>iOS 16.4 or later required</li>
+              <li>A12 Bionic chip or newer</li>
+              <li>Near-ultrasound acoustic pairing</li>
+              <li>Hardware kinetic panic sensor</li>
+            </ul>
+          </div>
+          <a href="#" class="pill-btn pill-btn-primary">Join TestFlight Beta</a>
+        </div>
+
+        <div class="download-card">
+          <div>
+            <div class="download-card-header">
+              <span class="platform-badge">DESKTOP SOVEREIGNTY</span>
+            </div>
+            <h3>macOS</h3>
+            <span class="version-tag">Beta 1.0 · Universal Binary</span>
+            <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">Native desktop application optimized for Apple Silicon and Intel hardware.</p>
+            <ul class="spec-list">
+              <li>macOS 13.0 Ventura or later</li>
+              <li>Apple Silicon (M1–M4) &amp; Intel</li>
+              <li>Touch ID enclave signing</li>
+              <li>Zero cloud backup sync</li>
+            </ul>
+          </div>
+          <a href="#" class="pill-btn pill-btn-primary">Download for Mac (.dmg)</a>
+        </div>
+
+        <div class="download-card">
+          <div>
+            <div class="download-card-header">
+              <span class="platform-badge">OPEN HARDWARE</span>
+            </div>
+            <h3>Android</h3>
+            <span class="version-tag">Developer Preview · APK</span>
+            <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">Jetpack Compose architecture with StrongBox hardware keystore support.</p>
+            <ul class="spec-list">
+              <li>Android 12 or later required</li>
+              <li>StrongBox Keymaster compatible</li>
+              <li>Reproducible build verification</li>
+              <li>Zero Google Play Services required</li>
+            </ul>
+          </div>
+          <a href="#" class="pill-btn pill-btn-primary">Download APK (.apk)</a>
+        </div>
+      </div>
+
+      <section style="padding: 60px 0 100px; border-top: 1px solid var(--surface-border); max-width: 760px; margin: 0 auto;">
+        <span class="section-label">Integrity Verification</span>
+        <h2 style="font-size: 26px; font-weight: 600; margin: 12px 0 16px;">Reproducible build signatures</h2>
+        <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 24px;">All release binaries are cryptographically signed and built deterministically. Independent verification hashes are published alongside each release tag.</p>
+        <div style="background: var(--surface); border: 1px solid var(--surface-border); border-radius: 12px; padding: 18px 20px; font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); overflow-x: auto;">
+          SHA256 (vespera-macos-universal-1.0.dmg) = e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a class="brand" href="index.html">
+            <span class="brand-symbol">V</span>
+            <span>VESPERA</span>
+          </a>
+          <p style="color: var(--text-secondary); font-size: 13px; margin-top: 12px; max-width: 280px;">Sovereign, zero-identifier private communication platform.</p>
+        </div>
+        <div class="footer-nav">
+          <div class="footer-col">
+            <h5>Navigation</h5>
+            <ul>
+              <li><a href="index.html">Platform</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="download.html">Download</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Protocol</h5>
+            <ul>
+              <li><a href="about.html#cryptography">Cryptography</a></li>
+              <li><a href="about.html#philosophy">Philosophy</a></li>
+              <li><a href="#specs">System Specs</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>VESPERA ARCHITECTURE · SOVEREIGN PROTOCOL</span>
+        <span>ZERO METADATA · ZERO SIM</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

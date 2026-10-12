@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="About Vespera — The philosophy and cryptographic foundation of zero-identifier communication.">
+  <title>About — Vespera Architecture &amp; Vision</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="page-ambient" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Vespera Home">
+        <span class="brand-symbol">V</span>
+        <span>VESPERA</span>
+      </a>
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#protocol">Protocol</a>
+        <a href="about.html" class="active">About</a>
+        <a href="download.html">Download</a>
+      </nav>
+      <div class="header-actions">
+        <a href="download.html" class="pill-btn pill-btn-primary">Get App</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <a href="index.html#features">Features</a>
+    <a href="index.html#protocol">Protocol</a>
+    <a href="about.html">About</a>
+    <a href="download.html">Download</a>
+    <a href="download.html" class="pill-btn pill-btn-primary" style="text-align: center;">Get App</a>
+  </div>
+
+  <main>
+    <div class="container">
+      <div class="about-hero">
+        <span class="section-label">Vision &amp; Philosophy</span>
+        <h1 class="hero-title" style="text-align: left; margin: 16px 0 24px;">The architecture of sovereign conversation.</h1>
+        <p class="hero-desc" style="text-align: left; margin: 0;">Communication does not require identification. For decades, consumer software has conflated connecting people with collecting their phone numbers and contact graphs.</p>
+      </div>
+
+      <article class="about-prose">
+        <section id="philosophy">
+          <h2>Zero-Identifier Philosophy</h2>
+          <p>Every mainstream communication tool begins with a compromise: submit a SIM card, associate a telephone number, and upload an address book. This architecture ties cryptographic identity to state-issued telecommunications credentials.</p>
+          <p>Vespera inverts this assumption. Conversations are ephemeral agreements between two independent devices. Your device creates private keys locally. No telephone numbers exist in the system, eliminating SIM-swap vulnerabilities and global directory indexing entirely.</p>
+        </section>
+
+        <section id="cryptography">
+          <h2>Cryptographic Principles</h2>
+          <p>The system is built upon four foundational security requirements designed from first principles:</p>
+          
+          <div class="principles-list">
+            <div class="principle-item">
+              <h4>1. Blind Relay Transmission</h4>
+              <p>Relay nodes pass encrypted envelopes through transient queues without learning sender IP, recipient IP, or communication patterns.</p>
+            </div>
+
+            <div class="principle-item">
+              <h4>2. Asynchronous Double Ratchet</h4>
+              <p>Every message advances an ephemeral key ratchet. Compromising a current session key yields zero access to historical or future conversation transcripts.</p>
+            </div>
+
+            <div class="principle-item">
+              <h4>3. Ephemeral Local Shredding</h4>
+              <p>Message decay is local and definitive. Once the burn timer elapses, cryptographic keys in volatile memory are overwritten with random noise.</p>
+            </div>
+
+            <div class="principle-item">
+              <h4>4. Hardware Enclave Storage</h4>
+              <p>Identity keys never leave the device's hardware security module (Secure Enclave on iOS/macOS, StrongBox Keymaster on Android).</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="team">
+          <h2>Team Vision</h2>
+          <p>Vespera is engineered by an independent security and cryptography collective dedicated to sovereign tools. We believe human autonomy relies on unmonitored speech, verifiable mathematics, and open standards.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a class="brand" href="index.html">
+            <span class="brand-symbol">V</span>
+            <span>VESPERA</span>
+          </a>
+          <p style="color: var(--text-secondary); font-size: 13px; margin-top: 12px; max-width: 280px;">Sovereign, zero-identifier private communication platform.</p>
+        </div>
+        <div class="footer-nav">
+          <div class="footer-col">
+            <h5>Navigation</h5>
+            <ul>
+              <li><a href="index.html">Platform</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="download.html">Download</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Protocol</h5>
+            <ul>
+              <li><a href="#cryptography">Cryptography</a></li>
+              <li><a href="#philosophy">Philosophy</a></li>
+              <li><a href="download.html#specs">System Specs</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>VESPERA ARCHITECTURE · SOVEREIGN PROTOCOL</span>
+        <span>ZERO METADATA · ZERO SIM</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
